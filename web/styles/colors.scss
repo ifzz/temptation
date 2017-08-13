@@ -1,0 +1,125 @@
+:root {
+    --lightGreen: #1BBFB7;
+    --bgGray: #efeff4;
+    --bgDarkGray: #cfcfcf;
+    --LightGray: #f8f8f8;
+    --yellow: #fede84;
+    --foreLight: #d4d4d4;
+    --foreLightness: #8d8d8d;
+    --foreLight2: #c5c5c5;
+    --blue: #5275bd;
+    --lightRed: #ff9494;
+    --red: #f73434;
+    --foreGray: #999999;
+    --grayish: #C7C7CC;
+    --foreGrayness: #737373;
+    --foreLightBlack: #606060;
+    --black: #222222;
+    --orange: #ef8c17;
+}
+
+:global(.bg-light-gray) {
+    background-color: var(--LightGray);
+}
+
+:global(.bg-gray) {
+    background-color: var(--bgGray);
+}
+
+:global(.bg-dark-gray) {
+    color: white;
+    background-color: var(--bgDarkGray);
+}
+
+:global(.bg-green) {
+    color: var(--LightGray);
+    background-color: var(--lightGreen);
+}
+
+:global(.bg-red-gradient) {
+    background: linear-gradient(90deg, var(--red), var(--lightRed))!important;
+}
+
+:global(.bg-yellow) {
+    background-color: var(--yellow);
+}
+
+:global(.bg-white) {
+    background-color: white;
+}
+
+:global(.fore-white) {
+    color: white;
+}
+
+:global(.fore-black) {
+    color: var(--black);
+}
+
+:global(.fore-green) {
+    color: var(--lightGreen);
+}
+
+:global(.fore-light) {
+    color: var(--foreLight);
+}
+
+:global(.placeholder-light::-webkit-input-placeholder) {
+    /* WebKit browsers */
+    color: var(--foreLight);
+}
+
+:global(.placeholder-light:-moz-placeholder) {
+    /* Mozilla Firefox 4 to 18 */
+    color: var(--foreLight);
+}
+
+:global(.placeholder-light::-moz-placeholder) {
+    /* Mozilla Firefox 19+ */
+    color: var(--foreLight);
+}
+
+:global(.placeholder-light:-ms-input-placeholder) {
+    /* Internet Explorer 10+ */
+    color: var(--foreLight);
+}
+
+:global(.fore-light2) {
+    color: var(--foreLight2);
+}
+
+:global(.fore-lightness) {
+    color: var(--foreLightness);
+}
+
+:global(.fore-light-black) {
+    color: var(--foreLightBlack);
+}
+
+:global(.fore-orange) {
+    color: var(--orange);
+}
+
+:global(.fore-gray) {
+    color: var(--foreGray);
+}
+
+:global(.fore-grayish) {
+    color: var(--grayish);
+}
+
+:global(.fore-grayness) {
+    color: var(--foreGrayness);
+}
+
+:global(.fore-blue) {
+    color: var(--blue);
+}
+
+:global(.fore-yellow) {
+    color: var(--yellow);
+}
+
+:global(.fore-red) {
+    color: var(--red);
+}

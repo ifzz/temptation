@@ -1,9 +1,48 @@
 @import 'normalize.css';
+@import './semantization.scss';
+@import './features.scss';
+@import './colors.scss';
+
+html,
 body {
-    padding: 0;
-    margin: 0;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: hidden;
 }
 
-h2 {
-    margin-top: 0;
+:global(#root)>div {
+    height: 100%;
+}
+
+body {
+    font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Noto Sans CJK SC, WenQuanYi Micro Hei, Arial, sans-serif;
+    background-color: #f8f8f8;
+    margin: 0;
+    padding: 0;
+    color: #3a3a3a;
+    -webkit-overflow-scrolling: touch;
+}
+
+ul,
+li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    user-select: none;
+    &:active {
+        background-color: inherit;
+    }
+}
+
+button {
+    border: none;
+}
+
+:focus {
+    outline: none;
 }

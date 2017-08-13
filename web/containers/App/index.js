@@ -1,9 +1,13 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { AppBar, RaisedButton } from 'material-ui'
-import styles from './App.scss'
-import Todo from '../Todo/index.jsx'
+import styles from './styles.scss'
 
 class App extends React.Component {
+
+  static propTypes = {
+    children: PropTypes.node.isRequired,
+  }
 
   constructor() {
     super()
@@ -17,9 +21,8 @@ class App extends React.Component {
   render() {
     return (
       <div className={styles.app}>
-        <AppBar
-          iconClassNameRight="muidocs-icon-navigation-expand-more" />
-        <Todo ref={(ref) => { this.todo = ref }} />
+        <AppBar iconClassNameRight="muidocs-icon-navigation-expand-more" />
+        {this.props.children}
         <RaisedButton label="清空TODO" onClick={this.clearTodo} />
       </div>
     )

@@ -1,7 +1,10 @@
 const path = require('path')
 const webpack = require('webpack')
+const fs = require('fs')
+
 const pkg = require('../package.json')
 const config = require('./index')
+
 const paths = config.utils_paths
 const __DEV__ = config.globals.__DEV__
 
@@ -12,21 +15,22 @@ module.exports = {
     'react-hot-loader/patch',
     'webpack-hot-middleware/client',
     'webpack/hot/only-dev-server',
-    paths.web('main.jsx')
+    paths.web('main.js'),
   ] : [
-    paths.web('main.jsx')
+    paths.web('main.js'),
   ],
   output: {
     path: paths.dist(),
     publicPath: '/static',
-    filename: 'main.min.js'
+    filename: 'main.min.js',
   },
   module: {
-    rules: [{
+    rules: [
+      {
         test: /\.jsx?$/,
         loader: 'babel-loader',
         include: [
-          paths.web()
+          paths.web(),
         ],
         exclude: /node_modules/,
         query: {
@@ -36,27 +40,26 @@ module.exports = {
               'env',
               {
                 targets: {
-                  browsers: pkg.browserList
+                  browsers: pkg.browserList,
                 },
                 modules: false,
                 useBuiltIns: false,
-                debug: false
-              }
+                debug: false,
+              },
             ],
             'stage-2',
-            'react'
+            'react',
           ],
           plugins: __DEV__ ? [
             'react-hot-loader/babel',
-            // 'transform-react-jsx-source',
-            // 'transform-react-jsx-self'
-          ] : []
-        }
+          ] : [],
+        },
       },
       {
         test: /\.s?css$/,
-        use: [{
-            loader: 'style-loader'
+        use: [
+          {
+            loader: 'style-loader',
           },
           {
             loader: 'css-loader',
@@ -91,10 +94,10 @@ module.exports = {
                 require('postcss-selector-not')(),
                 require('postcss-flexbugs-fixes')(),
                 require('autoprefixer')(pkg.browserList),
-              ]
+              ],
             },
-          }
-        ]
+          },
+        ],
       },
       {
         test: /\.(ico|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2)(\?.*)?$/,
@@ -102,8 +105,8 @@ module.exports = {
         query: {
           name: __DEV__ ? '[path][name].[ext]?[hash:8]' : '[hash:8].[ext]',
         },
-      }
-    ]
+      },
+    ],
   },
   devtool: __DEV__ ? 'cheap-module-source-map' : false,
   plugins: [
@@ -115,7 +118,7 @@ module.exports = {
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
     ...__DEV__ ? [
-      new webpack.HotModuleReplacementPlugin()
+      new webpack.HotModuleReplacementPlugin(),
     ] : [
       new webpack.optimize.UglifyJsPlugin({
         sourceMap: false,
@@ -132,11 +135,20 @@ module.exports = {
           screw_ie8: true,
         },
       }),
-    ]
+      // write the file hash mapping into a json file in the root of the server path
+      function() {
+        this.plugin('done', (stats) => {
+          let _stats = stats.toJson()
+          fs.writeFileSync(
+            path.join(__dirname, '../HashMapping.json'),
+            JSON.stringify(_stats.assetsByChunkName))
+        })
+      },
+    ],
   ],
   node: {
     fs: 'empty',
     net: 'empty',
     tls: 'empty',
-  }
+  },
 }

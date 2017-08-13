@@ -1,6 +1,8 @@
 {
   "globals": {
-    "document": true
+    "document": true,
+    "window": true,
+    "localStorage": true
   },
   "extends": "airbnb",
   "parser": "babel-eslint",
@@ -230,6 +232,8 @@
     ],
     "react/jsx-closing-bracket-location": 0,
     "react/jsx-filename-extension": 0,
+    "react/forbid-prop-types": 0,
+    "react/prop-types": 0,
     "semi": [
       2,
       "never"
