@@ -1,7 +1,7 @@
 const path = require('path')
 const ip = require('ip')
 
-const PORT = 80
+const PORT = 8001
 
 let config = {
   env: process.env.NODE_ENV || 'development',

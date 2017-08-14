@@ -14,10 +14,10 @@ const RENDER_INDEX = INIT_DATA => `<!doctype html>
     </head>
     <body>
         <div id="root" style="height: 100%"></div>
-        <script src="${config.globals.__DEV__ ? '/static/main.min.js' : mainFilePath}"></script>
         <script>
           window.__INIT_STATE=${JSON.stringify(INIT_DATA)}
         </script>
+        <script src="${config.globals.__DEV__ ? '/static/main.min.js' : mainFilePath}"></script>
     </body>
     </html>`
 

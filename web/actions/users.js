@@ -1,4 +1,4 @@
-import * as dialogActions from './dialogActions'
+import * as dialogActions from './dialog'
 
 import userApis from '../../apis/users'
 

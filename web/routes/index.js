@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { ConnectedRouter } from 'react-router-redux'
+import uuid from 'uuid/v4'
 
 import RouteTypes from '../enums/routeTypes'
 
@@ -18,7 +19,7 @@ const routes = [
 ]
 
 // application routes map
-const RouteMaps = ({ history, setMainTitle }) => (
+const RouteMaps = ({ history, setTitle }) => (
   <ConnectedRouter history={history}>
     <div className="container">
       {
@@ -26,9 +27,14 @@ const RouteMaps = ({ history, setMainTitle }) => (
           type === RouteTypes.PRIVATE
             ? <PrivateRoute
               {...rest}
-              setTitle={setMainTitle}
+              setTitle={setTitle}
+              key={uuid()}
             />
-            : <CommonRoute {...rest} setTitle={setMainTitle} />
+            : <CommonRoute
+              {...rest}
+              setTitle={setTitle}
+              key={uuid()}
+            />
         ))
       }
     </div>
@@ -37,7 +43,7 @@ const RouteMaps = ({ history, setMainTitle }) => (
 
 RouteMaps.propTypes = {
   history: PropTypes.object.isRequired,
-  setMainTitle: PropTypes.func.isRequired,
+  setTitle: PropTypes.func.isRequired,
 }
 
 export default RouteMaps

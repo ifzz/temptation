@@ -4,6 +4,7 @@ import { routerReducer as router } from 'react-router-redux'
 import * as dialogReducers from './dialogReducers'
 import * as authReducers from './userReducers'
 import toastMessage from './toastReducers'
+import * as globalReducers from './globalReducers'
 
 const rootReducer = combineReducers({
   toastMessage: toastMessage,
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   confirmMessage: dialogReducers.confirmMessage,
   userInfo: authReducers.userInfo,
   userLogin: authReducers.userLogin,
+  title: globalReducers.title,
   router,
 })
 

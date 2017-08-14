@@ -13,7 +13,7 @@ class Index extends React.Component {
   render() {
     return (
       <div className={styles.app}>
-        首页
+        大家好，我是你们的INDEX！
       </div>
     )
   }
