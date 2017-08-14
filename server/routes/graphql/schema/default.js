@@ -1,14 +1,14 @@
-import Models from '../../../../core/models'
-
-const UserModel = Models.user()
-
-let {
+import {
   GraphQLSchema,
   GraphQLObjectType,
   GraphQLString,
   GraphQLList,
   GraphQLBoolean,
-} = require('graphql')
+} from 'graphql'
+
+import Models from '../../../../core/models'
+
+const UserModel = Models.user()
 
 let UserType = new GraphQLObjectType({
   name: 'user',

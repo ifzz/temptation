@@ -4,7 +4,7 @@
  * Module dependencies.
  */
 
-let crypto = require('crypto')
+import crypto from 'crypto'
 
 /**
  * Bytesize.
@@ -29,18 +29,20 @@ let digest = 'sha512'
  * @api public
  */
 
-exports.hash = function (pwd, salt, fn) {
-  if (arguments.length === 3) {
-    crypto.pbkdf2(pwd, salt, iterations, len, digest, fn)
-  } else {
-    fn = salt
-    crypto.randomBytes(len, function (err, salt) {
-      if (err) return fn(err)
-      salt = salt.toString('base64')
-      crypto.pbkdf2(pwd, salt, iterations, len, digest, function (err, hash) {
+export default {
+  hash: function (pwd, salt, fn) {
+    if (arguments.length === 3) {
+      crypto.pbkdf2(pwd, salt, iterations, len, digest, fn)
+    } else {
+      fn = salt
+      crypto.randomBytes(len, (err, salt) => {
         if (err) return fn(err)
-        fn(null, salt, hash)
+        salt = salt.toString('base64')
+        crypto.pbkdf2(pwd, salt, iterations, len, digest, (err, hash) => {
+          if (err) return fn(err)
+          fn(null, salt, hash)
+        })
       })
-    })
-  }
+    }
+  },
 }

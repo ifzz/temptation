@@ -6,10 +6,10 @@ let reader = propReader('server.properties')
 let ip = reader.get('redisServer.ip')
 let port = reader.get('redisServer.port')
 let client = redis.createClient(port, ip, {})
-// let wrapper = redisWrapper(redis, {
-//   host: ip,
-//   port,
-// })
+let wrapper = redisWrapper(redis, {
+  host: ip,
+  port,
+})
 
 client
   .on('ready', () => {
@@ -23,4 +23,4 @@ client
   })
 
 export const longConnection = client
-// export const tempConnection = wrapper
+export const tempConnection = wrapper

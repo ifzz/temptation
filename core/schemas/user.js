@@ -3,48 +3,48 @@ import mongoose from 'mongoose'
 export default mongoose.Schema({
   username: {
     type: String,
-    required: true
+    required: true,
   },
   salt: {
     type: String,
-    required: true
+    required: true,
   },
   hash: {
     type: String,
-    required: true
+    required: true,
   },
   nickname: {
-    type: String
+    type: String,
   },
   avatar: {
     type: String,
-    'default': '/images/avatar_default.jpg'
+    'default': '/images/avatar_default.jpg',
   },
   age: {
     type: Number,
     min: 1,
-    max: 120
+    max: 120,
   },
   city: {
-    type: String
+    type: String,
   },
   hometown: {
-    type: String
+    type: String,
   },
   phone: {
-    type: String
+    type: String,
   },
   email: {
-    type: String
+    type: String,
   },
   birthday: {
-    type: Date
+    type: Date,
   },
   address: {
-    type: String
+    type: String,
   },
   createdate: {
     type: Date,
-    'default': Date.now()
-  }
+    'default': Date.now(),
+  },
 })

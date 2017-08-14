@@ -1,8 +1,11 @@
-let schema = require('./schema/default')
-let graphqlRoutes = require('express-graphql')(req => ({
+import expressGraphql from 'express-graphql'
+
+import schema from './schema/default'
+
+const graphqlRoutes = expressGraphql(req => ({
   schema: schema,
   context: req.session,
   graphiql: true,
 }))
 
-module.exports = graphqlRoutes
+export default graphqlRoutes

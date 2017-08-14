@@ -11,6 +11,7 @@ let config = {
   dir_server: 'server',
   server_host: ip.address(),
   server_port: process.env.PORT || PORT,
+  image_magic_install_path: 'C:\\Program Files\\ImageMagick\\magick',
 }
 
 function base(...args) {

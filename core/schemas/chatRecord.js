@@ -1,4 +1,5 @@
 import mongoose from 'mongoose'
+
 export default mongoose.Schema({
   sessionId: {
     type: String,
@@ -22,5 +23,5 @@ export default mongoose.Schema({
   createdate: {
     type: Date,
     'default': Date.now(),
-  }
+  },
 })
