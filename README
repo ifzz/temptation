@@ -11,31 +11,19 @@
 
 ### 基本功能
 
-<section style="color:#82e190;">
-
-- 脚手架
-
-</section>
-<section style="color:#ca9284;">
-
-- 账户管理（work on）
+- 脚手架 (done)
+- 账户管理 (work on)
 - 操作接口设计
 - 交易市场对接
 - 投资策略管理
 - corn 任务调度
 
-</section>
-
 ### 附加功能
-
-<section style="color:#ca9284;">
 
 - 移动客户端
 - 收益排行榜
 - 货币关键词爬虫
 - DNN
-
-</section>
 
 ## Wanna Contribute?
 
