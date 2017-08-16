@@ -1,9 +1,8 @@
 import React from 'react'
-import styles from './styles.scss'
 
-import userApis from '../../../apis/users'
+import userApis from '../../apis/users'
 
-class Index extends React.Component {
+export default class Index extends React.Component {
 
   constructor(props) {
     super(props)
@@ -13,6 +12,7 @@ class Index extends React.Component {
   }
 
   componentDidMount() {
+    console.log('wtf?')
     userApis
       .userList()
       .then(({ userList }) => {
@@ -26,13 +26,13 @@ class Index extends React.Component {
 
   render() {
     return (
-      <div className={styles.app}>
+      <div>
         大家好，我是你们的INDEX！
         <ul>
           {
             this.state.userList.map(user => (
-              <li key={user._id}>
-                <span>Username {user.username}</span>
+              <li key={user.id}>
+                <span>昵称 {user.nickname}</span>
                 <img
                   alt="avatar"
                   src={user.avatar}
@@ -47,5 +47,3 @@ class Index extends React.Component {
     )
   }
 }
-
-export default Index

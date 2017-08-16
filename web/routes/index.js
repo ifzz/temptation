@@ -5,6 +5,7 @@ import uuid from 'uuid/v4'
 
 import RouteTypes from '../enums/routeTypes'
 
+import App from '../containers/App'
 import Index from '../containers/Index'
 
 import { CommonRoute, PrivateRoute } from './extensions'
@@ -21,7 +22,7 @@ const routes = [
 // application routes map
 const RouteMaps = ({ history, setTitle }) => (
   <ConnectedRouter history={history}>
-    <div className="container">
+    <App>
       {
         routes.map(({ type, ...rest }) => (
           type === RouteTypes.PRIVATE
@@ -37,7 +38,7 @@ const RouteMaps = ({ history, setTitle }) => (
             />
         ))
       }
-    </div>
+    </App>
   </ConnectedRouter>
 )
 

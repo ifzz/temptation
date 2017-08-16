@@ -18,13 +18,16 @@ const MOUNT_NODE = document.getElementById('root')
 const { userInfo } = window.__INIT_STATE
 
 const store = configureStore(reducers, {
-  userInfo: userInfo || {},
-  userLogin: !!userInfo,
+  userInfo: userInfo,
+  userLogin: userInfo && !!(userInfo.id),
 }, customHistory)
 
 let renderIndex = () => {
   render(
-    <Root store={store} history={customHistory} />,
+    <Root
+      store={store}
+      history={customHistory}
+    />,
     MOUNT_NODE,
   )
 }
@@ -33,11 +36,13 @@ renderIndex()
 
 // This code is excluded from production bundle
 if (module.hot) {
-  module.hot.accept(() => {
-    renderIndex()
-  })
+
   module.hot.accept('./reducers/index', () => {
     /* eslint-disable */
     store.replaceReducer(require('./reducers/index').default)
+  })
+
+  module.hot.accept(() => {
+    renderIndex()
   })
 }

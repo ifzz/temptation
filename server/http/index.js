@@ -8,7 +8,7 @@ let mainFilePath = HashMapping.main
 const RENDER_INDEX = INIT_DATA => `<!doctype html>
     <html lang="zh-cn">
     <head>
-        <title>Temptation! - ${INIT_DATA.title}</title>
+        <title>Temptation!</title>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
     </head>
@@ -32,7 +32,6 @@ router.get(['/', '/index'], (req, res) => {
   } = user
 
   res.send(RENDER_INDEX({
-    title: '首页',
     userInfo: {
       username,
       avatar,
