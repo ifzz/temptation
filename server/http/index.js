@@ -22,9 +22,24 @@ const RENDER_INDEX = INIT_DATA => `<!doctype html>
     </html>`
 
 router.get(['/', '/index'], (req, res) => {
+  let user = req.session.user || {}
+  let {
+    username,
+    avatar,
+    age,
+    address,
+    nickname,
+  } = user
+
   res.send(RENDER_INDEX({
     title: '首页',
-    userInfo: req.session.user,
+    userInfo: {
+      username,
+      avatar,
+      age,
+      address,
+      nickname,
+    },
   }))
 })
 

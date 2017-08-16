@@ -78,25 +78,28 @@ export function postData(action, params) {
  * @param {string} operationName 操作类型名称
  */
 export function graphql(query, varibles, operationName) {
-  return new Promise((resolve, reject) => {
-    fetch(GRAPHQL_API, {
-      method: 'POST',
-      headers: DEFAULT_HEADERS,
-      'Content-Type': 'application/graphql',
-      body: JSON.stringify({
-        query: query,
-        varibles: varibles || null,
-        operationName: operationName || null,
-      }, (k, v) => {
-        if (typeof v === 'string') {
-          return v.replace(/(\s+|\n) /g, ' ')
-        }
-        return v
-      }),
-    })
-      .then(res => res.json())
-      .catch((err) => {
-        tryConsumeErr(err) // 请求异常交给系统注册的errorHandler处理
-      })
+  return fetch(GRAPHQL_API, {
+    method: 'POST',
+    headers: DEFAULT_HEADERS,
+    body: JSON.stringify({
+      query: query,
+      varibles: varibles || null,
+      operationName: operationName || null,
+    }, (k, v) => {
+      if (typeof v === 'string') {
+        return v.replace(/(\s+|\n) /g, ' ')
+      }
+      return v
+    }),
   })
+    .then(res => res.json())
+    .then((res) => {
+      if (res.errors) {
+        tryConsumeErr(new Error(res.errors[0].message))
+      }
+      return res.data || {}
+    })
+    .catch((err) => {
+      tryConsumeErr(err) // 请求异常交给系统注册的errorHandler处理
+    })
 }
