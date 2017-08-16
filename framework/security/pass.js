@@ -30,7 +30,7 @@ let digest = 'sha512'
  */
 
 export default {
-  hash: function (pwd, salt, fn) {
+  hash: (pwd, salt, fn) => {
     if (arguments.length === 3) {
       crypto.pbkdf2(pwd, salt, iterations, len, digest, fn)
     } else {

@@ -2,8 +2,8 @@ import fetch from 'isomorphic-fetch'
 
 export const SERVER = 'http://127.0.0.1:8001'
 
-const BASE_API = `${SERVER}`
-const GRAPHQL_API = `${SERVER}/graphql`
+const BASE_API = `${SERVER}/api`
+const GRAPHQL_API = `${SERVER}/data`
 const DEFAULT_HEADERS = {
   'Accept': 'application/json',
   'Content-Type': 'application/json',

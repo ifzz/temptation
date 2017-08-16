@@ -1,8 +1,15 @@
-import indexRoutes from './http/index'
-import graphqlRoutes from './graphql/index'
+import expressGraphql from 'express-graphql'
+
+import indexRoutes from '../http/index'
+import graphqlSchema from '../graphql'
+
+const graphqlRoutes = expressGraphql(req => ({
+  schema: graphqlSchema,
+  context: req.session,
+  graphiql: true,
+}))
 
 export default function(app) {
-  // --authentication valid routers--
   app.use('/', indexRoutes)
-  app.use('/graphql', graphqlRoutes)
+  app.use('/data', graphqlRoutes)
 }

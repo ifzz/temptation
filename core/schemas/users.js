@@ -45,6 +45,6 @@ export default mongoose.Schema({
   },
   createdate: {
     type: Date,
-    'default': Date.now(),
+    default: Date.now(),
   },
 })

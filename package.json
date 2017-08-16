@@ -30,6 +30,7 @@
     "babel-preset-stage-2": "^6.24.1",
     "babel-register": "^6.24.1",
     "bluebird": "^3.5.0",
+    "body-parser": "^1.17.2",
     "connect-redis": "^3.3.0",
     "css-loader": "^0.28.0",
     "eslint-plugin-react": "^7.0.0",

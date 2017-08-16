@@ -1,6 +1,6 @@
 import express from 'express'
-import HashMapping from '../../../HashMapping.json'
-import config from '../../../config/index'
+import HashMapping from '../../HashMapping.json'
+import config from '../../config/index'
 
 const router = express.Router()
 let mainFilePath = HashMapping.main
