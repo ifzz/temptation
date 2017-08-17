@@ -17,9 +17,6 @@ export default mongoose.Schema({
     type: String,
     required: true,
   },
-  reciever: {
-    type: Array,
-  },
   createdate: {
     type: Date,
     'default': Date.now(),
