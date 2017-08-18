@@ -18,28 +18,29 @@ const RENDER_INDEX = INIT_DATA => `<!doctype html>
           window.__INIT_STATE=${JSON.stringify(INIT_DATA)}
         </script>
         <script src="${config.globals.__DEV__ ? '/static/main.min.js' : mainFilePath}"></script>
+        <link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
     </body>
     </html>`
 
 router.get(['/', '/index'], (req, res) => {
-  let user = req.session.user || {}
-  let {
-    username,
-    avatar,
-    age,
-    address,
-    nickname,
-  } = user
-
-  res.send(RENDER_INDEX({
-    userInfo: {
-      username,
-      avatar,
-      age,
-      address,
-      nickname,
-    },
-  }))
+  let user = req.session.user
+  if (req.session.user) {
+    let { _id, username, profiles } = user
+    let { avatar, age, nickname, phone, email } = profiles
+    res.send(RENDER_INDEX({
+      userInfo: {
+        id: _id,
+        username,
+        avatar,
+        age,
+        phone,
+        email,
+        nickname,
+      },
+    }))
+  } else {
+    res.send(RENDER_INDEX({ userInfo: {} }))
+  }
 })
 
 export default router

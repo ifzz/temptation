@@ -117,6 +117,10 @@ module.exports = {
     }),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
+    new webpack.ProvidePlugin({
+      React: 'react',
+      PropTypes: 'prop-types',
+    }),
     ...__DEV__ ? [
       new webpack.HotModuleReplacementPlugin(),
     ] : [

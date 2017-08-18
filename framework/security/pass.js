@@ -30,9 +30,12 @@ let digest = 'sha512'
  */
 
 export default {
-  hash: (pwd, salt, fn) => {
+  hash: function (pwd, salt, fn) {
     if (arguments.length === 3) {
-      crypto.pbkdf2(pwd, salt, iterations, len, digest, fn)
+      crypto.pbkdf2(pwd, salt, iterations, len, digest, (err, hash) => {
+        if (err) return fn(err)
+        fn(null, salt, hash.toString())
+      })
     } else {
       fn = salt
       crypto.randomBytes(len, (err, salt) => {
@@ -40,7 +43,7 @@ export default {
         salt = salt.toString('base64')
         crypto.pbkdf2(pwd, salt, iterations, len, digest, (err, hash) => {
           if (err) return fn(err)
-          fn(null, salt, hash)
+          fn(null, salt, hash.toString())
         })
       })
     }

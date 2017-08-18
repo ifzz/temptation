@@ -3,6 +3,7 @@ import {
 } from 'graphql'
 
 import {
+  login,
   userInfo,
   userList,
 } from './fields/users'
@@ -10,6 +11,7 @@ import {
 export default new Obj({
   name: 'Queries',
   fields: {
+    login,
     userInfo,
     userList,
   },

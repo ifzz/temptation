@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "set NODE_ENV=production & pm2 start config/pm2.json",
-    "dev": "pm2 start config/pm2.json",
+    "dev": "rm -rf ./dist & pm2 start config/pm2.json",
     "build": "set NODE_ENV=production & webpack --config config/webpack.config.js",
     "stop": "pm2 kill",
     "eslint": "eslint ./web/**/*.js ./server/**/*.js ./framework/**/*.js ./core/**/*.js --fix"
@@ -68,11 +68,13 @@
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-hot-loader": "next",
+    "react-overdrive": "^0.0.8",
     "react-redux": "^5.0.4",
     "react-router": "^4.1.1",
     "react-router-dom": "^4.1.2",
     "react-router-redux": "next",
     "react-spinkit": "^2.1.1",
+    "react-tap-event-plugin": "^2.0.1",
     "redis": "^2.8.0",
     "redis-conn-wrapper": "^1.0.4",
     "redux": "^3.6.0",

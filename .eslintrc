@@ -3,7 +3,9 @@
     "document": true,
     "window": true,
     "localStorage": true,
-    "FormData": true
+    "FormData": true,
+    "React": true,
+    "PropTypes": true
   },
   "extends": "airbnb",
   "parser": "babel-eslint",
@@ -235,6 +237,7 @@
     "react/jsx-filename-extension": 0,
     "react/forbid-prop-types": 0,
     "react/prop-types": 0,
+    "react/react-in-jsx-scope": 0,
     "semi": [
       2,
       "never"

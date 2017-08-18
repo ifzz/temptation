@@ -73,11 +73,12 @@ export function postData(action, params) {
 
 /**
  * graphql 查询
+ * @param {string} actionName 接口名称
  * @param {string} query 查询语句
  * @param {object} varibles 变量
  * @param {string} operationName 操作类型名称
  */
-export function graphql(query, varibles, operationName) {
+export function graphql(actionName, query, varibles, operationName) {
   return fetch(GRAPHQL_API, {
     method: 'POST',
     headers: DEFAULT_HEADERS,
@@ -93,13 +94,14 @@ export function graphql(query, varibles, operationName) {
     }),
   })
     .then(res => res.json())
-    .then((res) => {
-      if (res.errors) {
-        tryConsumeErr(new Error(res.errors[0].message))
-      }
-      return res.data || {}
-    })
     .catch((err) => {
       tryConsumeErr(err) // 请求异常交给系统注册的errorHandler处理
+    })
+    .then(({ errors, data }) => {
+      if (errors) {
+        throw new Error(errors[0].message)
+      } else {
+        return data[actionName] || {}
+      }
     })
 }

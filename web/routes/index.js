@@ -22,7 +22,7 @@ const routes = [
 // application routes map
 const RouteMaps = ({ history, setTitle }) => (
   <ConnectedRouter history={history}>
-    <App>
+    <App history={history}>
       {
         routes.map(({ type, ...rest }) => (
           type === RouteTypes.PRIVATE

@@ -1,5 +1,6 @@
 import React from 'react'
 import { render } from 'react-dom'
+import injectTabEvent from 'react-tap-event-plugin'
 import createHashHistory from 'history/createHashHistory'
 
 import reducers from './reducers/index'
@@ -7,6 +8,18 @@ import configureStore from './store'
 import Root from './containers/Root'
 
 require('./styles/main.scss')
+
+// inject react tab event
+injectTabEvent()
+
+// 根据窗体宽度计算初始化的字体大小
+const initFontSize = function () {
+  let fs = (document.body.clientWidth + 16) / 25.875
+  document.body.parentElement.style.fontSize = `${fs > 16 ? 16 : fs}px`
+}
+
+window.onresize = initFontSize
+initFontSize()
 
 // ========================================================
 // Render Setup
@@ -42,7 +55,7 @@ if (module.hot) {
     store.replaceReducer(require('./reducers/index').default)
   })
 
-  module.hot.accept(() => {
+  module.hot.accept('./containers/Root', () => {
     renderIndex()
   })
 }

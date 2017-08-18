@@ -15,6 +15,10 @@
     white-space: nowrap;
 }
 
+:global(.hand-cursor) {
+    cursor: pointer;
+}
+
 :global(.large) {
     font-size: 1.8rem;
 }
@@ -149,6 +153,10 @@
 
 :global(.text-center) {
     text-align: center !important;
+}
+
+:global(.text-right) {
+    text-align: right !important;
 }
 
 :global(.align-center) {

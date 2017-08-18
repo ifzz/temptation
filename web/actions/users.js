@@ -1,6 +1,9 @@
 import * as dialogActions from './dialog'
 
-import userApis from '../../apis/users'
+import {
+  login as doLogin,
+  register as doRegister,
+} from '../../apis/users'
 
 export const FETCH_USER_INFO_STARTED = 'FETCH_USER_INFO_STARTED'
 export const FETCH_USER_INFO_FINISHED = 'FETCH_USER_INFO_FINISHED'
@@ -11,13 +14,36 @@ export const USER_LOG_OUT = 'USER_LOG_OUT'
  * 登录
  * @param {string} username 用户名
  * @param {string} pwd 密码
- * @param {string} code 验证码
  * @param {function} succFunc 成功的回调函数
  */
-export function login(username, pwd, code, succFunc) {
+export function login(username, pwd, succFunc) {
   return (dispatch, getState) => {
     dispatch({ type: FETCH_USER_INFO_STARTED })
-    userApis.login(username, pwd, code)
+
+    doLogin(username, pwd)
+      .then((data) => {
+        dispatch({ type: FETCH_USER_INFO_FINISHED, userInfo: data })
+        succFunc && succFunc(data)
+      })
+      .catch((err) => {
+        dispatch({ type: FETCH_USER_INFO_FAILED })
+        dispatch(dialogActions.alert({ title: '错误', msg: err.message }))
+      })
+  }
+}
+
+/**
+ * 注册
+ * @param {string} username 用户名
+ * @param {string} pwd 密码
+ * @param {string} confirmPwd 确认密码
+ * @param {function} succFunc 成功的回调函数
+ */
+export function register(username, pwd, confirmPwd, succFunc) {
+  return (dispatch, getState) => {
+    dispatch({ type: FETCH_USER_INFO_STARTED })
+
+    doRegister(username, pwd, confirmPwd)
       .then((data) => {
         dispatch({ type: FETCH_USER_INFO_FINISHED, userInfo: data })
         succFunc && succFunc(data)

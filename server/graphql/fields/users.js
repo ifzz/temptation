@@ -20,7 +20,6 @@ export const userInfo = {
   },
   resolve(root, params, session) {
     let id
-    console.log(session)
     if (params.id) {
       id = params.id
     } else if (session.user) {
@@ -36,7 +35,7 @@ export const register = {
   type: UserType,
   description: '创建用户',
   args: {
-    name: {
+    username: {
       type: GraphQLString,
     },
     password: {
@@ -48,7 +47,7 @@ export const register = {
   },
   resolve(root, params, session) {
     let {
-      name,
+      username,
       password,
       confirmPassword,
     } = params
@@ -56,9 +55,10 @@ export const register = {
     return new Promise((resolve, reject) => {
       let handler = (err, user) => {
         if (!err && user) {
-          console.log(user)
           session.user = user
-          resolve(user)
+          session.save(() => {
+            resolve(user)
+          })
         } else {
           reject(err.message)
         }
@@ -66,12 +66,12 @@ export const register = {
 
       if (password !== confirmPassword) {
         handler(new Error('两次密码输入不一致!'))
-      } else if (!name || !password) {
+      } else if (!username || !password) {
         handler(new Error('用户名/密码不能为空!'))
       } else {
         // 校验用户是否已注册
         UserModel.findOne({
-          username: name,
+          username: username,
         }, (err, user) => {
           if (err) {
             handler(err)
@@ -87,10 +87,12 @@ export const register = {
               } else {
                 // 加密成功 存储用户数据
                 let user = {
-                  username: name,
-                  salt: salt,
-                  hash: hash,
-                  nickname: name,
+                  username,
+                  salt,
+                  hash,
+                  profiles: {
+                    nickname: username,
+                  },
                 }
 
                 let userModel = UserModel(user)
@@ -104,6 +106,65 @@ export const register = {
                 })
               }
             })
+          }
+        })
+      }
+    })
+  },
+}
+
+export const login = {
+  type: UserType,
+  description: '用户登录',
+  args: {
+    username: {
+      type: GraphQLString,
+    },
+    password: {
+      type: GraphQLString,
+    },
+  },
+  resolve(root, params, session) {
+    let {
+      username,
+      password,
+    } = params
+
+    return new Promise((resolve, reject) => {
+      let handler = (err, user) => {
+        if (!err && user) {
+          session.user = user
+          session.save(() => {
+            resolve(user)
+          })
+        } else {
+          reject(err.message)
+        }
+      }
+
+      if (!username || !password) {
+        handler(new Error('用户名/密码不能为空!'))
+      } else {
+        // 校验用户是否已注册
+        UserModel.findOne({
+          username: username,
+        }, (err, user) => {
+          if (err) {
+            handler(err)
+          } else if (user) {
+            securityPass.hash(password, user.salt, (err, salt, hash) => {
+              if (err) {
+                // 加密密码失败
+                handler(err)
+              } else if (hash === user.hash) {
+                handler(null, user)
+              } else {
+                handler(new Error('用户名或密码错误'))
+              }
+            })
+          } else {
+            // 用户尚未注册
+            handler(new Error('用户未注册'))
           }
         })
       }

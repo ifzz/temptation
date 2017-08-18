@@ -1,8 +1,9 @@
 import mongoose from 'mongoose'
 import propReader from 'properties-reader'
 import bluebird from 'bluebird'
+import path from 'path'
 
-let reader = propReader('server.properties')
+let reader = propReader(path.resolve(__dirname, '../../server.properties'))
 
 const db = mongoose.createConnection(reader.get('dbServer.ip'), reader.get('dbServer.name'))
 

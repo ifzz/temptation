@@ -1,8 +1,9 @@
 import redis from 'redis'
 import redisWrapper from 'redis-conn-wrapper'
 import propReader from 'properties-reader'
+import path from 'path'
 
-let reader = propReader('server.properties')
+let reader = propReader(path.resolve(__dirname, '../../server.properties'))
 let ip = reader.get('redisServer.ip')
 let port = reader.get('redisServer.port')
 let client = redis.createClient(port, ip, {})
