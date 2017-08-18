@@ -56,9 +56,7 @@ export const register = {
       let handler = (err, user) => {
         if (!err && user) {
           session.user = user
-          session.save(() => {
-            resolve(user)
-          })
+          resolve(user)
         } else {
           reject(err.message)
         }
@@ -134,9 +132,7 @@ export const login = {
       let handler = (err, user) => {
         if (!err && user) {
           session.user = user
-          session.save(() => {
-            resolve(user)
-          })
+          resolve(user)
         } else {
           reject(err.message)
         }
@@ -178,9 +174,7 @@ export const logout = {
   resolve(root, params, session) {
     return new Promise((resolve) => {
       session.user = null
-      session.save(() => {
-        resolve(true)
-      })
+      resolve(true)
     })
   },
 }

@@ -19,7 +19,7 @@ app.use(Express.static(path.resolve(__dirname, '../public')))
 app.use('/static', Express.static(paths.dist()))
 
 app.use(cors({
-  origin: '*',
+  origin: 'localhost:8001',
   credentials: true,
   optionsSuccessStatus: 200,
 }))

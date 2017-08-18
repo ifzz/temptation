@@ -1,6 +1,5 @@
 import session from 'express-session'
 import connRedis from 'connect-redis'
-import config from '../../config'
 import {
   longConnection,
 } from './index'
@@ -19,9 +18,9 @@ export default session({
   }),
   secret: 'fxxk ti7',
   resave: true,
+  unset: 'destroy',
   saveUninitialized: false,
   cookie: {
     secure: false,
-    domain: config.domain,
   },
 })

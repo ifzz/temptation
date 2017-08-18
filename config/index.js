@@ -9,7 +9,6 @@ let config = {
   dir_web: 'web',
   dir_dist: 'dist',
   dir_server: 'server',
-  domain: 'http://localhost:8001',
   server_host: ip.address(),
   server_port: process.env.PORT || PORT,
   image_magic_install_path: 'C:\\Program Files\\ImageMagick\\magick',
