@@ -172,6 +172,19 @@ export const login = {
   },
 }
 
+export const logout = {
+  type: GraphQLBoolean,
+  description: '用户注销',
+  resolve(root, params, session) {
+    return new Promise((resolve) => {
+      session.user = null
+      session.save(() => {
+        resolve(true)
+      })
+    })
+  },
+}
+
 export const userList = {
   type: UserListType,
   description: '查询用户列表',

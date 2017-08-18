@@ -127,7 +127,7 @@ class App extends React.Component {
           titleStyle={{ textAlign: 'center' }}
           iconElementRight={
             this.props.userLogin
-              ? <Logged />
+              ? <Logged style={{ marginLeft: '8px' }} />
               : <IconButton style={{ marginLeft: '8px' }}>
                 <AccountIcon
                   label="登录"

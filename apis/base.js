@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-fetch'
 
-export const SERVER = 'http://127.0.0.1:8001'
+export const SERVER = ''
 
 const BASE_API = `${SERVER}/api`
 const GRAPHQL_API = `${SERVER}/data`
@@ -82,6 +82,7 @@ export function graphql(actionName, query, varibles, operationName) {
   return fetch(GRAPHQL_API, {
     method: 'POST',
     headers: DEFAULT_HEADERS,
+    credentials: 'include',
     body: JSON.stringify({
       query: query,
       varibles: varibles || null,

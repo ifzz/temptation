@@ -21,7 +21,7 @@ export default session({
   resave: true,
   saveUninitialized: false,
   cookie: {
-    secure: true,
+    secure: false,
     domain: config.domain,
   },
 })

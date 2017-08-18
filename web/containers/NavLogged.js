@@ -6,8 +6,13 @@ import Settings from 'material-ui/svg-icons/action/settings'
 import Share from 'material-ui/svg-icons/social/share'
 import Divider from 'material-ui/Divider'
 import Logout from 'material-ui/svg-icons/maps/directions-run'
+import Switch from 'material-ui/svg-icons/action/compare-arrows'
+import { connect } from 'react-redux'
 
-const Logged = props => (
+import { logout } from '../actions/users'
+import { toggleLoginDialog } from '../actions/global'
+
+const Logged = ({ logout, toggleLoginDialog, ...props }) => (
   <IconMenu
     {...props}
     iconButtonElement={
@@ -19,10 +24,31 @@ const Logged = props => (
     <MenuItem primaryText="账户" leftIcon={<Settings />} />
     <MenuItem primaryText="分享" leftIcon={<Share />} />
     <Divider />
-    <MenuItem primaryText="登出" leftIcon={<Logout />} />
+    <MenuItem
+      primaryText="切换账户"
+      onClick={() => {
+        toggleLoginDialog(true)
+      }}
+      leftIcon={<Switch />}
+    />
+    <MenuItem
+      primaryText="注销"
+      onClick={logout}
+      leftIcon={<Logout />}
+    />
   </IconMenu>
 )
 
+Logged.propTypes = {
+  logout: PropTypes.func.isRequired,
+}
+
 Logged.muiName = 'IconMenu'
 
-export default Logged
+export default connect(
+  null,
+  {
+    logout,
+    toggleLoginDialog,
+  },
+)(Logged)

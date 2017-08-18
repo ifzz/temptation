@@ -3,6 +3,7 @@ import * as dialogActions from './dialog'
 import {
   login as doLogin,
   register as doRegister,
+  logout as doLogout,
 } from '../../apis/users'
 
 export const FETCH_USER_INFO_STARTED = 'FETCH_USER_INFO_STARTED'
@@ -55,8 +56,15 @@ export function register(username, pwd, confirmPwd, succFunc) {
   }
 }
 
-export function logout() {
-  return (dispatch) => {
-    dispatch({ type: USER_LOG_OUT })
+export function logout(succCallback) {
+  return (dispatch, getState) => {
+    doLogout()
+      .then(() => {
+        dispatch({ type: USER_LOG_OUT })
+        typeof succCallback === 'function' && succCallback()
+      })
+      .catch((err) => {
+        dispatch(dialogActions.alert({ title: '错误', msg: err.message }))
+      })
   }
 }

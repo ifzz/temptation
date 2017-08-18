@@ -20,3 +20,5 @@ export const login = (
   username,
   pwd,
 ) => graphql('login', `{ login(username:"${username}",password:"${pwd}"){ ${USER_PROPERTIES} }}`)
+
+export const logout = () => graphql('logout', '{ logout }')

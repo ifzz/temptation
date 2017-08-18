@@ -5,7 +5,8 @@
     "localStorage": true,
     "FormData": true,
     "React": true,
-    "PropTypes": true
+    "PropTypes": true,
+    "fetch": true
   },
   "extends": "airbnb",
   "parser": "babel-eslint",
