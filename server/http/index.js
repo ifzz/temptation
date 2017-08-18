@@ -11,6 +11,7 @@ const RENDER_INDEX = INIT_DATA => `<!doctype html>
         <title>Temptation!</title>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     </head>
     <body>
         <div id="root" style="height: 100%"></div>

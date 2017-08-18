@@ -84,12 +84,12 @@ class LoginDialog extends React.Component {
         onRequestClose={this.closeDialog}
         modal={false}
         autoScrollBodyContent
-        title="欢迎使用 Temptation"
+        title="欢迎"
         titleStyle={{
           backgroundColor: this.state.isLogin ? '#00bcd4' : '#00d4b8',
-          color: this.state.isLogin ? '#fafafa' : '#fffa42',
-          padding: this.state.isLogin ? '.8rem 1.4rem' : '.4rem 1.4rem',
-          fontSize: this.state.isLogin ? '1.5rem' : '1.2rem',
+          color: '#fafafa',
+          padding: '.8rem 1.4rem',
+          fontSize: '1.5rem',
           transition: 'all .4s ease',
         }}
       >
@@ -124,8 +124,10 @@ class LoginDialog extends React.Component {
             primary
             style={{
               margin: '1.5rem auto 0 auto',
-              backgroundColor: this.state.isLogin ? '#c8feff' : '#fffbc8',
+              transition: 'all .4s ease',
+              backgroundColor: '#c8feff',
             }}
+            className={this.state.isLogin ? '' : 'bg-green'}
             onClick={this.submit}
           >
             {this.state.isLogin ? '登录' : '注册'}

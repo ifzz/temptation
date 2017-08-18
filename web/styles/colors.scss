@@ -19,21 +19,21 @@
 }
 
 :global(.bg-light-gray) {
-    background-color: var(--LightGray);
+    background-color: var(--LightGray)!important;
 }
 
 :global(.bg-gray) {
-    background-color: var(--bgGray);
+    background-color: var(--bgGray)!important;
 }
 
 :global(.bg-dark-gray) {
-    color: white;
-    background-color: var(--bgDarkGray);
+    color: white !important;
+    background-color: var(--bgDarkGray)!important;
 }
 
 :global(.bg-green) {
-    color: var(--LightGray);
-    background-color: var(--lightGreen);
+    color: var(--LightGray)!important;
+    background-color: var(--lightGreen)!important;
 }
 
 :global(.bg-red-gradient) {
@@ -41,85 +41,85 @@
 }
 
 :global(.bg-yellow) {
-    background-color: var(--yellow);
+    background-color: var(--yellow)!important;
 }
 
 :global(.bg-white) {
-    background-color: white;
+    background-color: white!important;
 }
 
 :global(.fore-white) {
-    color: white;
+    color: white!important;
 }
 
 :global(.fore-black) {
-    color: var(--black);
+    color: var(--black)!important;
 }
 
 :global(.fore-green) {
-    color: var(--lightGreen);
+    color: var(--lightGreen) !important;
 }
 
 :global(.fore-light) {
-    color: var(--foreLight);
+    color: var(--foreLight) !important;
 }
 
 :global(.placeholder-light::-webkit-input-placeholder) {
     /* WebKit browsers */
-    color: var(--foreLight);
+    color: var(--foreLight) !important;
 }
 
 :global(.placeholder-light:-moz-placeholder) {
     /* Mozilla Firefox 4 to 18 */
-    color: var(--foreLight);
+    color: var(--foreLight) !important;
 }
 
 :global(.placeholder-light::-moz-placeholder) {
     /* Mozilla Firefox 19+ */
-    color: var(--foreLight);
+    color: var(--foreLight) !important;
 }
 
 :global(.placeholder-light:-ms-input-placeholder) {
     /* Internet Explorer 10+ */
-    color: var(--foreLight);
+    color: var(--foreLight) !important;
 }
 
 :global(.fore-light2) {
-    color: var(--foreLight2);
+    color: var(--foreLight2) !important;
 }
 
 :global(.fore-lightness) {
-    color: var(--foreLightness);
+    color: var(--foreLightness) !important;
 }
 
 :global(.fore-light-black) {
-    color: var(--foreLightBlack);
+    color: var(--foreLightBlack) !important;
 }
 
 :global(.fore-orange) {
-    color: var(--orange);
+    color: var(--orange) !important;
 }
 
 :global(.fore-gray) {
-    color: var(--foreGray);
+    color: var(--foreGray) !important;
 }
 
 :global(.fore-grayish) {
-    color: var(--grayish);
+    color: var(--grayish) !important;
 }
 
 :global(.fore-grayness) {
-    color: var(--foreGrayness);
+    color: var(--foreGrayness) !important;
 }
 
 :global(.fore-blue) {
-    color: var(--blue);
+    color: var(--blue) !important;
 }
 
 :global(.fore-yellow) {
-    color: var(--yellow);
+    color: var(--yellow) !important;
 }
 
 :global(.fore-red) {
-    color: var(--red);
+    color: var(--red) !important;
 }

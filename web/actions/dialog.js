@@ -14,7 +14,7 @@ export const CONFIRM_MESSAGE = 'CONFIRM_MESSAGE'
 export const CLOSE_DIALOG = 'CLOSE_DIALOG'
 
 export function alert({
-  title = '提示',
+  title,
   msg = '',
   callback,
   btnText = '确定',
@@ -29,7 +29,7 @@ export function alert({
 }
 
 export function confirm({
-  title = '确认',
+  title,
   msg = '',
   confirmCallback,
   cancelCallback,

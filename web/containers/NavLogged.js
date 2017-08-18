@@ -11,8 +11,9 @@ import { connect } from 'react-redux'
 
 import { logout } from '../actions/users'
 import { toggleLoginDialog } from '../actions/global'
+import { alert } from '../actions/dialog'
 
-const Logged = ({ logout, toggleLoginDialog, ...props }) => (
+const Logged = ({ alert, logout, toggleLoginDialog, ...props }) => (
   <IconMenu
     {...props}
     iconButtonElement={
@@ -21,8 +22,20 @@ const Logged = ({ logout, toggleLoginDialog, ...props }) => (
     targetOrigin={{ horizontal: 'right', vertical: 'top' }}
     anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
   >
-    <MenuItem primaryText="账户" leftIcon={<Settings />} />
-    <MenuItem primaryText="分享" leftIcon={<Share />} />
+    <MenuItem
+      primaryText="账户"
+      leftIcon={<Settings />}
+      onClick={() => {
+        alert({ msg: '敬请期待' })
+      }}
+    />
+    <MenuItem
+      primaryText="分享"
+      leftIcon={<Share />}
+      onClick={() => {
+        alert({ msg: '敬请期待' })
+      }}
+    />
     <Divider />
     <MenuItem
       primaryText="切换账户"
@@ -41,6 +54,7 @@ const Logged = ({ logout, toggleLoginDialog, ...props }) => (
 
 Logged.propTypes = {
   logout: PropTypes.func.isRequired,
+  alert: PropTypes.func.isRequired,
 }
 
 Logged.muiName = 'IconMenu'
@@ -50,5 +64,6 @@ export default connect(
   {
     logout,
     toggleLoginDialog,
+    alert,
   },
 )(Logged)

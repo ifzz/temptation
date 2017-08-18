@@ -1,45 +1,49 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Route } from 'react-router-dom'
 import { ConnectedRouter } from 'react-router-redux'
 import uuid from 'uuid/v4'
 
-import RouteTypes from '../enums/routeTypes'
-
 import App from '../containers/App'
 import Index from '../containers/Index'
-
-import { CommonRoute, PrivateRoute } from './extensions'
+import Chatroom from '../containers/Chatroom'
 
 const routes = [
   {
     path: '/',
     title: '首页',
     component: Index,
-    type: RouteTypes.COMMON,
+  },
+  {
+    path: '/chatroom',
+    title: '聊天室',
+    component: Chatroom,
   },
 ]
 
 // application routes map
 const RouteMaps = ({ history, setTitle }) => (
-  <ConnectedRouter history={history}>
-    <App history={history}>
-      {
-        routes.map(({ type, ...rest }) => (
-          type === RouteTypes.PRIVATE
-            ? <PrivateRoute
-              {...rest}
-              setTitle={setTitle}
+  <App history={history}>
+    <ConnectedRouter history={history}>
+      <div className="page-container">
+        {
+          routes.map(({ type, path, title, component: Component, ...rest }) => (
+            <Route
+              exact
+              path={path}
               key={uuid()}
-            />
-            : <CommonRoute
               {...rest}
-              setTitle={setTitle}
-              key={uuid()}
+              render={(props) => {
+                console.log(props)
+                setTimeout(() => setTitle(title))
+                return (<Component {...props} />)
+              }}
             />
-        ))
-      }
-    </App>
-  </ConnectedRouter>
+          ))
+        }
+      </div>
+    </ConnectedRouter>
+  </App>
 )
 
 RouteMaps.propTypes = {

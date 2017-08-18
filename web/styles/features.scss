@@ -9,6 +9,10 @@
     background-position: center center;
 }
 
+:global(.transition-all) {
+    transition: all .35s ease;
+}
+
 :global(.trim-text) {
     overflow: hidden;
     text-overflow: ellipsis;
@@ -203,6 +207,11 @@
     width: 100%;
     overflow-x: hidden;
     overflow-y: auto;
+}
+
+:global(.page-container) {
+    height: calc(100% - 64px);
+    width: 100%;
 }
 
 :global(.flex1) {

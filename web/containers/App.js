@@ -54,6 +54,7 @@ class App extends React.Component {
         <FlatButton
           label={alertMessagePayload.btnText}
           primary
+          keyboardFocused
           onClick={() => {
             this.props.closeDialog()
             // execute the callback function
@@ -67,8 +68,14 @@ class App extends React.Component {
       return (
         <Dialog
           title={alertMessagePayload.title}
+          titleStyle={{
+            backgroundColor: '#faf1ba',
+            padding: '.8rem 1.4rem',
+            marginBottom: '1rem',
+          }}
           actions={actions}
           open
+          onRequestClose={this.props.closeDialog}
         >
           {alertMessagePayload.msg}
         </Dialog>
@@ -103,6 +110,11 @@ class App extends React.Component {
       return (
         <Dialog
           title={confirmMessagePayload.title}
+          titleStyle={{
+            backgroundColor: '#baf1fa',
+            padding: '.8rem 1.4rem',
+            marginBottom: '1rem',
+          }}
           actions={actions}
           modal
           open
@@ -137,7 +149,7 @@ class App extends React.Component {
           }
           onLeftIconButtonTouchTap={() => { this.props.toggleSideMenu(true) }}
         />
-        <SideMenus />
+        <SideMenus history={this.props.history} />
         <LoginDialog />
         {this.props.children}
       </div>

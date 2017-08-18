@@ -4,7 +4,7 @@ export function alertMessage(
   state = null,
   {
     type,
-    title = '提示',
+    title,
     msg,
     callback,
     btnText,
@@ -27,7 +27,7 @@ export function confirmMessage(
   state = null,
   {
     type,
-    title = '确认',
+    title,
     msg,
     confirmCallback,
     cancelCallback,
