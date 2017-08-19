@@ -3,6 +3,7 @@ import socketIOClient from 'socket.io-client'
 import { connect } from 'react-redux'
 import uuid from 'uuid/v4'
 import {
+  Avatar,
   TextField,
   RaisedButton,
   List,
@@ -46,7 +47,7 @@ class Chatroom extends React.Component {
     this.client = socketIOClient()
     // init socket user
     this.client.on('connect', () => {
-      this.client.emit(`${SERVICE_NAME_PREFIX}add user`, this.props.userInfo)
+      this.client.emit(`${SERVICE_NAME_PREFIX}add user`)
     })
     // receive new message...
     this.client.on(`${SERVICE_NAME_PREFIX}new message`, (dataPayload) => {
@@ -92,6 +93,7 @@ class Chatroom extends React.Component {
       })
     } else {
       let dataPayload = {
+        sender: this.props.userInfo,
         message: msg,
         uuid: uuid(),
       }
@@ -109,22 +111,20 @@ class Chatroom extends React.Component {
         }}
       >
         <div
-          className="label"
+          className="w-100 bg-green"
           style={{
-            height: '1.2rem',
-            lineHeight: '1.2rem',
+            letterSpacing: '3px',
+            lineHeight: '2rem',
             textAlign: 'center',
           }}
         >当前在线{this.state.onlineUserCount}人</div>
         <List
           id="chat-container"
-          className="dis-flex scrolling"
+          className="w-100 dis-flex scrolling"
           style={{
-            width: '90%',
-            padding: '0 5%',
             alignItems: 'flex-start',
             justifyContent: 'flex-start',
-            height: 'calc(100% - 4rem - 1.2rem)',
+            height: 'calc(100% - 4rem - 2rem)',
             flexDirection: 'column',
             overflowX: 'hidden',
             overflowY: 'auto',
@@ -134,9 +134,12 @@ class Chatroom extends React.Component {
               <ListItem
                 key={uuid}
                 disabled
-              >
-                [ {sender.username} ] : {message}
-              </ListItem>
+                leftAvatar={
+                  <Avatar src={sender.avatar} />
+                }
+                primaryText={sender.username}
+                secondaryText={message}
+              />
             ))
           }
         </List>

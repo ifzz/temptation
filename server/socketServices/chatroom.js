@@ -26,7 +26,7 @@ export default function (server) {
 
     socket.on(`${SERVICE_NAME_PREFIX}new message`, (data) => {
       let msgData = {
-        sender: socket.user,
+        sender: data.sender,
         message: data.message,
         uuid: data.uuid,
         createTime: new Date(),
@@ -39,17 +39,14 @@ export default function (server) {
     })
 
     // when the client emits 'add user', this listens and executes
-    socket.on(`${SERVICE_NAME_PREFIX}add user`, (userInfo) => {
-
-      console.log(`${userInfo['username']} 进入聊天室`)
+    socket.on(`${SERVICE_NAME_PREFIX}add user`, () => {
 
       if (__added) return
 
       numUsers += 1
       __added = true
-      // we store the username in the socket session for this client
-      socket.user = userInfo
 
+      // we store the username in the socket session for this client
       socket.emit(`${SERVICE_NAME_PREFIX}login`, {
         numUsers: numUsers,
       })
@@ -69,23 +66,7 @@ export default function (server) {
 
       // echo globally (all clients) that a person has connected
       socket.broadcast.emit(`${SERVICE_NAME_PREFIX}user joined`, {
-        user: socket.user,
         numUsers: numUsers,
-      })
-    })
-
-    // when the client emits 'typing', we broadcast it to others
-    socket.on(`${SERVICE_NAME_PREFIX}typing`, () => {
-      socket.broadcast.emit(`${SERVICE_NAME_PREFIX}typing`, {
-        user: socket.user,
-        _id: socket.id,
-      })
-    })
-
-    // when the client emits 'stop typing', we broadcast it to others
-    socket.on(`${SERVICE_NAME_PREFIX}stop typing`, () => {
-      socket.broadcast.emit(`${SERVICE_NAME_PREFIX}stop typing`, {
-        _id: socket.id,
       })
     })
 
@@ -97,7 +78,6 @@ export default function (server) {
       }
       // echo globally that this client has left
       socket.broadcast.emit(`${SERVICE_NAME_PREFIX}user left`, {
-        user: socket.user,
         numUsers: numUsers,
       })
     })
