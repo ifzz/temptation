@@ -191,6 +191,10 @@
     display: none
 }
 
+:global(.scrolling) {
+    -webkit-overflow-scrolling: touch;
+}
+
 :global(.backgroundCover) {
     background-size: cover;
     background-repeat: no-repeat;

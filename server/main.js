@@ -5,15 +5,20 @@ import devMiddleware from 'webpack-dev-middleware'
 import hotMiddleware from 'webpack-hot-middleware'
 import bodyParser from 'body-parser'
 import cors from 'cors'
+import http from 'http'
 
 import config from '../config/index'
 import webpackClientConfig from '../config/webpack.config'
 import sessionRegistry from '../framework/redis/session'
 import routeMapsInit from './routes/RouteMaps'
+import initChatroom from './socketServices/chatroom'
 
+// init chatroom socket service
 const app = new Express()
+const server = http.createServer(app)
 const paths = config.utils_paths
 
+initChatroom(server)
 // static resource
 app.use(Express.static(path.resolve(__dirname, '../public')))
 app.use('/static', Express.static(paths.dist()))
@@ -40,6 +45,6 @@ if (config.globals.__DEV__) {
   app.use(hotMiddleware(compiler))
 }
 
-app.listen(config.server_port, () => {
+server.listen(config.server_port, () => {
   console.log(`Server is listening on port ${config.server_port}`)
 })

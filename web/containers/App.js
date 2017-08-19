@@ -40,14 +40,12 @@ class App extends React.Component {
     this.renderDialog = this.renderDialog.bind(this)
   }
 
-
   // 渲染弹窗
   renderDialog() {
     const {
       alertMessagePayload,
       confirmMessagePayload,
      } = this.props
-
 
     if (alertMessagePayload) {  // 警告弹窗
       let actions = [
