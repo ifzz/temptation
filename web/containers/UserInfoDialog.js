@@ -31,7 +31,7 @@ class UserInfoDialog extends React.Component {
         onRequestClose={this.closeDialog}
         modal={false}
         autoScrollBodyContent
-        title="用户信息"
+        title={this.props.userInfo.username}
         titleStyle={{
           color: '#fafafa',
           backgroundColor: '#1BBFB7',
@@ -41,8 +41,8 @@ class UserInfoDialog extends React.Component {
         }}
       >
         <ListItem
-          primaryText={this.props.userInfo.nickname}
-          secondaryText={this.props.userInfo.username}
+          primaryText="昵称"
+          secondaryText={this.props.userInfo.nickname}
           leftAvatar={
             <Avatar
               src={this.props.userInfo.avatar}

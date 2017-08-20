@@ -1,12 +1,10 @@
 import React from 'react'
 
-export default class Index extends React.Component {
+export default class BenifitRank extends React.Component {
 
   constructor(props) {
     super(props)
-    this.state = {
-      userList: [],
-    }
+    this.state = {}
   }
 
   componentDidMount() { }
@@ -14,7 +12,7 @@ export default class Index extends React.Component {
   render() {
     return (
       <div className="container">
-        <h2>人见人爱的首页</h2>
+        <h2>排行榜</h2>
       </div>
     )
   }

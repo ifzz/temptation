@@ -142,7 +142,7 @@ class Chatroom extends React.Component {
                 leftAvatar={
                   <Avatar src={sender.avatar} />
                 }
-                primaryText={this.props.userInfo.id === sender.id ? '' : sender.nickname}
+                primaryText={this.props.userInfo.id === sender.id ? '你' : sender.nickname}
                 secondaryText={message}
                 secondaryTextLines={2}
               />

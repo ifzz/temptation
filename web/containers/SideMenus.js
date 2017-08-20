@@ -3,26 +3,10 @@ import {
   AppBar,
   MenuItem,
 } from 'material-ui'
-
-import Home from 'material-ui/svg-icons/action/home'
-import Chat from 'material-ui/svg-icons/communication/chat'
-
 import { connect } from 'react-redux'
 
 import { toggleSideMenu } from '../actions/global'
-
-const LINKS = [
-  {
-    text: '首页',
-    to: '/',
-    icon: <Home />,
-  },
-  {
-    text: '聊天室',
-    to: '/chatroom',
-    icon: <Chat />,
-  },
-]
+import LINKS from '../routes/maps'
 
 const SideMenus = ({
   history,
@@ -47,13 +31,16 @@ const SideMenus = ({
       {
         LINKS.map(link => (
           <MenuItem
-            key={link.to}
+            key={link.path}
             onClick={() => {
               toggleSideMenu(false)
-              history.replace(link.to)
+              history.replace(link.path)
             }}
             leftIcon={link.icon}
             primaryText={link.text}
+            style={{
+              margin: '.8rem auto 0 auto',
+            }}
           />
         ))
       }
@@ -65,7 +52,6 @@ SideMenus.propTypes = {
   toggleSideMenu: PropTypes.func.isRequired,
   sideMenuOpened: PropTypes.bool.isRequired,
 }
-
 
 export default connect(
   state => ({

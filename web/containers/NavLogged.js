@@ -2,7 +2,7 @@ import IconButton from 'material-ui/IconButton'
 import IconMenu from 'material-ui/IconMenu'
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert'
 import MenuItem from 'material-ui/MenuItem'
-import Settings from 'material-ui/svg-icons/action/settings'
+import Info from 'material-ui/svg-icons/social/person'
 import Share from 'material-ui/svg-icons/social/share'
 import Divider from 'material-ui/Divider'
 import Logout from 'material-ui/svg-icons/maps/directions-run'
@@ -23,8 +23,8 @@ const Logged = ({ alert, logout, toggleLoginDialog, toggleUserInfoDialog, ...pro
     anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
   >
     <MenuItem
-      primaryText="用户信息"
-      leftIcon={<Settings />}
+      primaryText="基本信息"
+      leftIcon={<Info />}
       onClick={() => {
         toggleUserInfoDialog(true)
       }}

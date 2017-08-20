@@ -1,5 +1,7 @@
 import mongoose from 'mongoose'
 
+const SchemaObjectId = mongoose.SchemaTypes.ObjectId
+
 export default mongoose.Schema({
   username: {
     type: String,
@@ -32,5 +34,21 @@ export default mongoose.Schema({
       default: 20,
     },
   },
-  // settings: {},
+  settings: {
+    authentications: [{
+      platform: {
+        type: SchemaObjectId,
+        ref: 'platforms',
+        required: true,
+      },
+      accessKey: {
+        type: String,
+        required: true,
+      },
+      secretKey: {
+        type: String,
+        required: true,
+      },
+    }],
+  },
 })

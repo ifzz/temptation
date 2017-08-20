@@ -5,21 +5,7 @@ import { ConnectedRouter } from 'react-router-redux'
 import uuid from 'uuid/v4'
 
 import App from '../containers/App'
-import Index from '../containers/Index'
-import Chatroom from '../containers/Chatroom'
-
-const routes = [
-  {
-    path: '/',
-    title: '首页',
-    component: Index,
-  },
-  {
-    path: '/chatroom',
-    title: '聊天室',
-    component: Chatroom,
-  },
-]
+import Routes from './maps'
 
 // application routes map
 const RouteMaps = ({ history, setTitle }) => (
@@ -27,15 +13,14 @@ const RouteMaps = ({ history, setTitle }) => (
     <ConnectedRouter history={history}>
       <div className="page-container">
         {
-          routes.map(({ type, path, title, component: Component, ...rest }) => (
+          Routes.map(({ path, text, component: Component, ...rest }) => (
             <Route
               exact
               path={path}
               key={uuid()}
               {...rest}
               render={(props) => {
-                console.log(props)
-                setTimeout(() => setTitle(title))
+                setTimeout(() => setTitle(text))
                 return (<Component {...props} />)
               }}
             />

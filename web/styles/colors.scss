@@ -48,6 +48,11 @@
     background-color: white!important;
 }
 
+:global(.bg-blue) {
+    color: var(--LightGray)!important;
+    background-color: var(--blue) !important;
+}
+
 :global(.fore-white) {
     color: white!important;
 }
