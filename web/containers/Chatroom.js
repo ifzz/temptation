@@ -13,7 +13,7 @@ import {
 import { alert } from '../actions/dialog'
 
 const SERVICE_NAME_PREFIX = 'chatroom:'
-
+const CHARACTER_LENGTH_LIMITATION = 60
 const GO_BOTTOM = () => {
   document.querySelector('#chat-container').scrollTop = Number.MAX_SAFE_INTEGER
 }
@@ -91,6 +91,11 @@ class Chatroom extends React.Component {
         title: '错误',
         msg: '消息内容不得为空',
       })
+    } else if (msg.length > CHARACTER_LENGTH_LIMITATION) {
+      this.props.alert({
+        title: '错误',
+        msg: `消息内容不得大于${CHARACTER_LENGTH_LIMITATION}字`,
+      })
     } else {
       let dataPayload = {
         sender: this.props.userInfo,
@@ -113,11 +118,10 @@ class Chatroom extends React.Component {
         <div
           className="w-100 bg-green"
           style={{
-            letterSpacing: '3px',
             lineHeight: '2rem',
             textAlign: 'center',
           }}
-        >当前在线{this.state.onlineUserCount}人</div>
+        >Current Online : {this.state.onlineUserCount}</div>
         <List
           id="chat-container"
           className="w-100 dis-flex scrolling"
@@ -132,13 +136,15 @@ class Chatroom extends React.Component {
           {
             this.state.msgPayloadCollection.map(({ sender, message, uuid }) => (
               <ListItem
+                className="animated fadeIn"
                 key={uuid}
                 disabled
                 leftAvatar={
                   <Avatar src={sender.avatar} />
                 }
-                primaryText={sender.username}
+                primaryText={this.props.userInfo.id === sender.id ? '' : sender.nickname}
                 secondaryText={message}
+                secondaryTextLines={2}
               />
             ))
           }
@@ -152,7 +158,7 @@ class Chatroom extends React.Component {
         >
           <TextField
             ref={(ref) => { this.txtMsg = ref }}
-            hintText={this.props.userLogin ? '消息内容' : '登录后才能发言'}
+            hintText={this.props.userLogin ? `消息内容(${CHARACTER_LENGTH_LIMITATION}字以内)` : '登录后才能发言'}
             className="flex-1"
             disabled={!this.props.userLogin}
             onKeyPress={this.onPress}

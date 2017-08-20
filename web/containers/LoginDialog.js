@@ -136,12 +136,12 @@ class LoginDialog extends React.Component {
           <div
             className="w-100 m-t-10 text-right"
           >
-            <span
+            <a
               className="label hand-cursor"
               role="button"
               tabIndex="-1"
               onClick={this.state.isLogin ? this.changeToReg : this.changeToLogin}
-            >{this.state.isLogin ? '没有账号?' : '已有账号'}</span>
+            >{this.state.isLogin ? '没有账号?' : '已有账号'}</a>
           </div>
         </div>
       </Dialog >

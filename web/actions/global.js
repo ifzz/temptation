@@ -26,3 +26,14 @@ export const CLOSE_LOGIN_DIALOG = 'CLOSE_LOGIN_DIALOG'
 export function toggleLoginDialog(flag) {
   return { type: flag ? OPEN_LOGIN_DIALOG : CLOSE_LOGIN_DIALOG }
 }
+
+/**
+ * 用户信息对话框
+ */
+export const OPEN_USER_INFO_DIALOG = 'OPEN_USER_INFO_DIALOG'
+export const CLOSE_USER_INFO_DIALOG = 'CLOSE_USER_INFO_DIALOG'
+
+export function toggleUserInfoDialog(flag) {
+  return { type: flag ? OPEN_USER_INFO_DIALOG : CLOSE_USER_INFO_DIALOG }
+}
+

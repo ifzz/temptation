@@ -12,6 +12,7 @@ import AccountIcon from 'material-ui/svg-icons/social/person'
 import Logged from './NavLogged'
 import SideMenus from './SideMenus'
 import LoginDialog from './LoginDialog'
+import UserInfoDialog from './UserInfoDialog'
 import Toast from './Toast'
 
 import { toggleSideMenu, toggleLoginDialog } from '../actions/global'
@@ -149,6 +150,7 @@ class App extends React.Component {
         />
         <SideMenus history={this.props.history} />
         <LoginDialog />
+        <UserInfoDialog />
         {this.props.children}
       </div>
     )

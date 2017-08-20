@@ -32,3 +32,16 @@ export function loginDialog(state = false, { type }) {
     return state
   }
 }
+
+/**
+ * 用户信息对话框的开启状态
+ */
+export function userInfoDialog(state = false, { type }) {
+  if (type === ActionTypes.OPEN_USER_INFO_DIALOG) {
+    return true
+  } else if (type === ActionTypes.CLOSE_USER_INFO_DIALOG) {
+    return false
+  } else {
+    return state
+  }
+}

@@ -11,6 +11,7 @@ const rootReducer = combineReducers({
   alertMessage: dialogReducers.alertMessage,
   confirmMessage: dialogReducers.confirmMessage,
   loginDialogOpened: globalReducers.loginDialog,
+  userInfoDialogOpened: globalReducers.userInfoDialog,
   sideMenuOpened: globalReducers.sideMenu,
   userInfo: authReducers.userInfo,
   userLogin: authReducers.userLogin,

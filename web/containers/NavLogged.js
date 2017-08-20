@@ -10,10 +10,10 @@ import Switch from 'material-ui/svg-icons/action/compare-arrows'
 import { connect } from 'react-redux'
 
 import { logout } from '../actions/users'
-import { toggleLoginDialog } from '../actions/global'
+import { toggleLoginDialog, toggleUserInfoDialog } from '../actions/global'
 import { alert } from '../actions/dialog'
 
-const Logged = ({ alert, logout, toggleLoginDialog, ...props }) => (
+const Logged = ({ alert, logout, toggleLoginDialog, toggleUserInfoDialog, ...props }) => (
   <IconMenu
     {...props}
     iconButtonElement={
@@ -23,10 +23,10 @@ const Logged = ({ alert, logout, toggleLoginDialog, ...props }) => (
     anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
   >
     <MenuItem
-      primaryText="账户"
+      primaryText="用户信息"
       leftIcon={<Settings />}
       onClick={() => {
-        alert({ msg: '敬请期待' })
+        toggleUserInfoDialog(true)
       }}
     />
     <MenuItem
@@ -64,6 +64,7 @@ export default connect(
   {
     logout,
     toggleLoginDialog,
+    toggleUserInfoDialog,
     alert,
   },
 )(Logged)
